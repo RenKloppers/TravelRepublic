@@ -1,0 +1,227 @@
+@charset "utf-8";
+
+$bg-color: #FFFFFF;
+$body-content-padding: 5px;
+$media-content-padding: 9px;
+$media-bg-color: #F5F5F5;
+$header-top-line-color: #F18331;
+$hotelRating-color: #51a5c1;
+$hotelName-color: #293991;
+$hotelLocation-color: #ff7802;
+$hotelRatingTitle-color: #51a5c1;
+$hotelPrice-color: #ff7802;
+$hotelAmend-color: #269b28;
+$rating-color: #a9a9a9;
+$rating-filled-color: #ff7802;
+$totalPrice-color: #000000;
+$hotelReview-color: #51a5c1;
+
+@mixin paddingTop ($padding: none) {
+  padding-top: $padding;
+}
+
+@mixin padding ($padding: none) {
+  padding: $padding;
+}
+
+@mixin backgroundColor ($color: none) {
+  background-color: $color;
+}
+
+@mixin color ($color: none) {
+  color: $color;
+}
+
+body {
+  @include paddingTop($body-content-padding);
+  @include backgroundColor($bg-color);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1160px;
+}
+
+.btn {
+  margin-bottom: 3px;
+  border: 0px solid transparent;
+  border-radius: 4px;
+}
+
+.content {
+  display: table;
+  margin: 0 auto;
+}
+
+.media {
+  @include padding($media-content-padding);
+  @include backgroundColor($media-bg-color);
+  box-shadow: 0 0 0 1px #CBCBCB;
+  display: inline-block;
+  left: 5px;
+  position: relative;
+}
+
+.img-responsive {
+  box-shadow: 0 0 0 2px #CBCBCB;
+  top: 5px;
+  position: relative;
+}
+
+.header-top-line-style {
+  @include backgroundColor($header-top-line-color);
+  height: 10px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.logo {
+  padding: 10px;
+}
+
+.mapIcon {
+  position: relative;
+  top: -2px;
+  padding: 2px;
+}
+
+.pagination  {
+  margin: 5px 0;
+}
+
+.prevBtn {
+  float: left;
+}
+
+.footerPager {
+  margin: auto;
+  width: 247px;
+}
+
+.ng-binding {
+  margin-left: 5px !important;
+  margin-right: 5px;
+}
+
+.hotelName {
+  @include color($hotelName-color);
+  font-size: medium;
+  font-weight: 300;
+}
+
+.hotelLocation {
+  @include color($hotelLocation-color);
+  font-size: medium;
+  font-weight: 200;
+}
+
+.hotelRating {
+  @include backgroundColor($hotelRating-color);
+  color: #FFFFFF;
+  font-size: medium;
+  font-weight: 200;
+  float: left;
+  top: 12px;
+  position: relative;
+  padding: 2px;
+  width: 30px;
+  text-align: center;
+}
+
+.hotelRatingTitle{
+  @include color($hotelRatingTitle-color);
+  font-size: medium;
+  font-weight: 200;
+  float: left;
+  top: 7px;
+  position: relative;
+}
+
+.hotelPrice {
+  @include color($hotelPrice-color);
+  font-size: x-large;
+  font-weight: 300;
+  float: right;
+  top: 6px;
+  position: relative;
+  text-align: right;
+}
+
+.hotelImageDetail {
+  height: 210px;
+}
+
+.rating {
+  position: relative;
+  top: 4px;
+}
+
+.lineSpacer{
+  border-bottom: 1px dotted #ff7802;
+  width: 100%;
+  position: relative;
+  top: 5px;
+}
+
+.hotelAmend {
+  @include color($hotelAmend-color);
+  font-size: smaller;
+  font-weight: 300;
+}
+
+.hotelStars {
+  position: relative;
+}
+
+.footerContent {
+  font-size: smaller;
+  font-weight: 400;
+}
+
+.hotelDistance {
+  font-size: medium;
+  font-weight: 200;
+  top: 2px;
+  position: relative;
+}
+
+.rating{
+  @include color($rating-color);
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.rating .filled {
+  @include color($rating-filled-color);
+}
+
+#totalPrice {
+  @include color($totalPrice-color);
+  font-size: xx-small;
+  font-weight: 600;
+  text-align: right;
+  top: 3px;
+  position: relative;
+}
+
+#hotelReview{
+  @include color($hotelReview-color);
+  font-size: small;
+  font-weight: 200;
+  float: left;
+  top: 28px;
+  position: absolute;
+  left: 40px;
+}

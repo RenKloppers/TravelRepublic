@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Travel Republic</title>
+    <meta name="title" content="Hotel App">
+    <meta name="description" content="Hotel App by Ren Kloppers">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="theme-color" content="#FFFFFF">
+    <meta name="author" content="Ren Kloppers">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/styles.min.css">
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/spin.min.js"></script>
+    <script src="vendor/angular-spinner.min.js"></script>
+    <script src="vendor/angular-loading-spinner.min.js"></script>
+    <script src="app/app.js"></script>
+</head>
+<body>
+<div ng-app="App" ng-controller="HotelCtrl" ng-init="loadAppData()">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div class="header-top-line-style"></div>
+    <div class="nav">
+        <header>
+            <img class="logo" src="images/logo.png" alt=""/>
+            <aside class="navItems">
+                <button type="button" class="btn btn-primary"
+                        ng-click="reverse=!reverse;order('-UserRatingCount',false)">Recommended</button>
+                <button type="button" class="btn btn-primary"
+                        ng-click="reverse=!reverse;order('-UserRating',false)">Customer Rating</button>
+                <button type="button" class="btn btn-primary"
+                        ng-click="preverse=!preverse;order('MinCost',preverse)">Price
+                    <span class="fa fa-sort-up columnSortIcons" ng-if="!(preverse)"></span>
+                    <span class="fa fa-sort-down columnSortIcons" ng-if="preverse"></span>
+                    </button>
+                <button type="button" class="btn btn-primary"
+                        ng-click="sreverse=!sreverse;order('Stars',sreverse)">Star Rating
+                    <span class="fa fa-sort-up columnSortIcons" ng-if="!(sreverse)"></span>
+                    <span class="fa fa-sort-down columnSortIcons" ng-if="sreverse"></span>
+                    </button>
+                <button type="button" class="btn btn-primary"
+                        ng-click="dreverse=!dreverse;order('Distance',dreverse)">Distance
+                    <span class="fa fa-sort-up columnSortIcons" ng-if="!(dreverse)"></span>
+                    <span class="fa fa-sort-down columnSortIcons" ng-if="dreverse"></span>
+                </button>
+            </aside>
+            <ul class="pagination" >
+                <li>
+                    <button type="button" class="btn btn-primary prevBtn" ng-disabled="currentPage == 0"
+                            ng-click="currentPage = currentPage-1">PREV</button>
+                </li>
+                <li class="pageDisplay">
+                    <span>Page {{currentPage + 1}} of {{ numberOfPages() }}</span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary"
+                            ng-disabled="currentPage >= numberOfPages() - 1"
+                            ng-click="currentPage = currentPage+1">NEXT</button>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <div class="row content">
+        <div class="paginationclass" ng-repeat="hotel in names | pagination: currentPage * displayAmount | limitTo:displayAmount  ">
+            <div class="row" >
+                <div class="col-xs-12 col-md-12">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="img-responsive"><a href="" ng-click="showImageDetails = !showImageDetails"><img ng-src="{{hotel.ThumbnailUrl}} alt=""></a><p></div>
+                            <div class="hotelStars">
+                                <div class="star-rating" star-rating rating-value="hotel.Stars" data-max="5"></div>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <div class="hotelName"><a href="" ng-click="showImageDetails = !showImageDetails">{{hotel.Name}}</a></div>
+                            <div class="hotelImage" ng-show="showImageDetails"><img class="hotelImageDetail" ng-src="{{hotel.ImageUrl}} alt=""><p></div>
+                            <div class="hotelLocation">{{hotel.Location}}</div>
+                            <div class="hotelDistance"><img class="mapIcon" src="images/map-icon.png" alt=""/>{{Math.round(hotel.Distance * 10)/10 + 'km' }}</div>
+                            <div class="lineSpacer"></div>
+                            <div class="rating">
+                            <div class="hotelRating">
+                                {{hotel.UserRating}}
+                            </div>
+                            <div class="hotelRatingTitle">
+                                {{hotel.UserRatingTitle}}
+                            </div>
+                            <div id="hotelReview"> {{'(' + hotel.UserRatingCount + ' Reviews)'}}</div></div>
+                            <div class="hotelPrice"><div id="totalPrice">Total Price </div>{{'£' + hotel.MinCost}}</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footerPager">
+            <ul class="pagination" >
+                <li>
+                    <button type="button" class="btn btn-primary prevBtn" ng-disabled="currentPage == 0"
+                            ng-click="currentPage = currentPage-1">PREV</button>
+                </li>
+                <li class="pageDisplay">
+                    <span>Page {{currentPage + 1}} of {{ numberOfPages() }}</span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary"
+                            ng-disabled="currentPage >= numberOfPages() - 1"
+                            ng-click="currentPage = currentPage+1">NEXT</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+<div>
+<footer class="text-center footerContent">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>© 2015 Travel Republic Limited. All Rights Reserved.<br>App by Ren Kloppers</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script src="vendor/jquery.min.js"></script>
+<script src="vendor/bootstrap.min.js"></script>
+</body>
+</html>
